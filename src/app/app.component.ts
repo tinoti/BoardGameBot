@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
+import { LocalStorageService, User } from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -11,20 +12,18 @@ import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
 }]
 })
 export class AppComponent implements OnInit {
+
+  constructor(private service: LocalStorageService) {}
   title = 'front';
 
   value = 0
 
-  usersArray = [
-    new User("Ivan", "1"),
-    new User("Dario", "2"),
-    new User("Lovre", "3"),
-     new User("Tino", "4")
-  ]
+  usersArray: User[] = [];
 
 
   ngOnInit() {
 
+    this.usersArray = this.service.getUsers()
   }
 
 
@@ -35,9 +34,12 @@ export class AppComponent implements OnInit {
 
   setAvailability(name: any, nameDay: any) {
 
+    this.usersArray = this.service.getUsers()
     const user = this.usersArray.filter(o => o.name === name)
     const day = user[0].days.filter(o => o.name === nameDay)
     day[0].availability = this.value
+
+    this.service.setUsers(this.usersArray)
 
   }
 
@@ -55,35 +57,5 @@ export class AppComponent implements OnInit {
         return "button-color-default"
         break;
     }
-  }
-}
-
-
-class User {
-  name: string
-  id: string
-  days: Day[] = [
-    new Day("Ponedjeljak", 0),
-    new Day("Utorak", 0),
-    new Day("Srijeda", 0),
-    new Day("Četvrtak", 0),
-    new Day("Petak", 0),
-    new Day("Subota", 0),
-    new Day("Nedjelja", 0)
-  ]
-
-  constructor(name: string, id: string) {
-    this.name = name
-    this.id = id
-  }
-}
-
-class Day {
-  name: string
-  availability: number
-
-  constructor(name: string, availability: number) {
-    this.name = name
-    this.availability = availability
   }
 }
