@@ -1,0 +1,35 @@
+.button-color-blue {
+  color: #fff;
+  background-color: #3f51b5
+}
+
+.button-color-green {
+  color: #fff;
+  background-color: #80bb41
+}
+
+.button-color-red {
+  color: #fff;
+  background-color: red
+}
+
+.button-color-yellow {
+  color: #fff;
+  background-color: darkgoldenrod
+}
+
+.button-color-default {
+  color: black;
+  background-color: #fff;
+}
+
+button{
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+
+
+.mat-radio-button {
+  margin-right: 10px;
+}

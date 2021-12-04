@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row d-flex justify-content-center">
+
+    <mat-card class="col-sm-8 col-md-8">
+      <div>
+        <button style="width:70px" mat-raised-button color="primary">Ivan</button>
+
+        <ng-container *ngFor="let day of usersArray[0].days">
+          <button mat-raised-button (click)="setAvailability('Ivan', day.name)"  [ngClass]="setButtonColor(day.availability)">{{day.name}}</button>
+        </ng-container>
+
+      </div>
+
+      <div>
+        <button style="width:70px" mat-raised-button color="primary">Dario</button>
+
+        <ng-container *ngFor="let day of usersArray[1].days">
+          <button mat-raised-button (click)="setAvailability('Dario', day.name)"  [ngClass]="setButtonColor(day.availability)">{{day.name}}</button>
+        </ng-container>
+
+      </div>
+
+
+      <div>
+        <button style="width:70px" mat-raised-button color="primary">Lovre</button>
+
+        <ng-container *ngFor="let day of usersArray[2].days">
+          <button mat-raised-button (click)="setAvailability('Lovre', day.name)"  [ngClass]="setButtonColor(day.availability)">{{day.name}}</button>
+        </ng-container>
+
+      </div>
+
+
+      <div>
+        <button style="width:70px" mat-raised-button color="primary">Tino</button>
+
+        <ng-container *ngFor="let day of usersArray[3].days">
+          <button mat-raised-button (click)="setAvailability('Tino', day.name)"  [ngClass]="setButtonColor(day.availability)">{{day.name}}</button>
+        </ng-container>
+
+      </div>
+
+
+
+      <br>
+      <div>
+        <mat-radio-group (change)=changeValue($event)>
+          <mat-radio-button value="1">Mogu</mat-radio-button>
+          <mat-radio-button value="2">Ne mogu</mat-radio-button>
+          <mat-radio-button value="3">Možda</mat-radio-button>
+          <mat-radio-button value="0">Poništi</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+    </mat-card>
+  </div>
+</div>
