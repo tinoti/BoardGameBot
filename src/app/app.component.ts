@@ -22,8 +22,12 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit() {
-
-    this.usersArray = this.service.getUsers()
+    const usersArray = this.service.getUsers()
+    if(usersArray == null) {
+      this.usersArray = []
+    } else {
+      this.usersArray = usersArray
+    }
   }
 
 
@@ -41,6 +45,10 @@ export class AppComponent implements OnInit {
 
     this.service.setUsers(this.usersArray)
 
+  }
+
+  setDefaultState(){
+    this.usersArray = this.service.setDefaultState()
   }
 
   setButtonColor(availability: any){

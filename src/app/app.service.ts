@@ -3,22 +3,40 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class LocalStorageService {
-  usersArray = [
-    new User("Ivan", "1"),
-    new User("Dario", "2"),
-    new User("Lovre", "3"),
-     new User("Tino", "4")
-  ]
+
+  localStorage: Storage;
+  constructor() {
+    this.localStorage = window.localStorage;
+  }
+
+
+
 
 
   setUsers(usersArray: any[]): void {
-    this.usersArray = usersArray
+    this.localStorage.setItem("usersArray", JSON.stringify(usersArray))
   }
 
-  getUsers() {
-    return this.usersArray
+  getUsers(): any {
+    return JSON.parse(this.localStorage.getItem("usersArray") as string);
   }
+
+
+  setDefaultState() {
+    const usersArray = [
+      new User("Ivan", "1"),
+      new User("Dario", "2"),
+      new User("Lovre", "3"),
+      new User("Tino", "4")
+    ]
+
+    this.localStorage.setItem("usersArray", JSON.stringify(usersArray))
+    return JSON.parse(this.localStorage.getItem("usersArray") as string);
+  }
+
+
 }
+
 
 
 
