@@ -5,40 +5,44 @@
 
       <mat-card class="col-sm-12 col-md-12 d-flex justify-content-center">
         <div>
-          <div>
-            <button style="width:70px" mat-raised-button color="primary">Ivan</button>
+          <div style="display: inline-block">
+            <button style="width:100px" mat-raised-button color="primary">Ivan</button>
 
             <ng-container *ngFor="let day of usersArray[0].days">
-              <button mat-raised-button (click)="setAvailability('Ivan', day.name)"  [ngClass]="setButtonColor(day.availability)">{{day.name}}</button>
+              <br>
+              <button style="width:100px" mat-raised-button (click)="setAvailability('Ivan', day.name)"  [ngClass]="setButtonColor(day.availability)">{{day.name}}</button>
             </ng-container>
 
           </div>
 
-          <div>
-            <button style="width:70px" mat-raised-button color="primary">Dario</button>
+          <div style="display: inline-block">
+            <button style="width:100px" mat-raised-button color="primary">Dario</button>
 
             <ng-container *ngFor="let day of usersArray[1].days">
-              <button mat-raised-button (click)="setAvailability('Dario', day.name)"  [ngClass]="setButtonColor(day.availability)">{{day.name}}</button>
+              <br>
+              <button style="width:100px" mat-raised-button (click)="setAvailability('Dario', day.name)"  [ngClass]="setButtonColor(day.availability)">{{day.name}}</button>
             </ng-container>
 
           </div>
 
 
-          <div>
-            <button style="width:70px" mat-raised-button color="primary">Lovre</button>
+          <div style="display: inline-block">
+            <button style="width:100px" mat-raised-button color="primary">Lovre</button>
 
             <ng-container *ngFor="let day of usersArray[2].days">
-              <button mat-raised-button (click)="setAvailability('Lovre', day.name)"  [ngClass]="setButtonColor(day.availability)">{{day.name}}</button>
+              <br>
+              <button style="width:100px" mat-raised-button (click)="setAvailability('Lovre', day.name)"  [ngClass]="setButtonColor(day.availability)">{{day.name}}</button>
             </ng-container>
 
           </div>
 
 
-          <div>
-            <button style="width:70px" mat-raised-button color="primary">Tino</button>
+          <div style="display: inline-block">
+            <button style="width:100px" mat-raised-button color="primary">Tino</button>
 
             <ng-container *ngFor="let day of usersArray[3].days">
-              <button mat-raised-button (click)="setAvailability('Tino', day.name)"  [ngClass]="setButtonColor(day.availability)">{{day.name}}</button>
+              <br>
+              <button style="width:100px" mat-raised-button (click)="setAvailability('Tino', day.name)"  [ngClass]="setButtonColor(day.availability)">{{day.name}}</button>
             </ng-container>
 
           </div>
@@ -65,7 +69,7 @@
 <br>
 <div class="container">
   <div class="row d-flex justify-content-center ">
-    <div class="col-sm-7 col-md-7">
+    <div class="col-sm-4 col-md-4">
       <button mat-raised-button color="primary" [disabled]="isDisabled" (click)="save()">Spremi</button>
       <button mat-raised-button color="primary" [disabled]="isDisabled" (click)="setDefaultState()">Reset (sve)</button>
     </div>
