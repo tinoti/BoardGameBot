@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  backendUrl: 'http://localhost:3031'
+  backendUrl: 'https://boardgameschedule.herokuapp.com/'
 };

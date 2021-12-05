@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,11 @@ export class LocalStorageService {
 
 
   setUsers(usersArray: any[]) {
-    return this.httpClient.post('http://localhost:8080/post-users', { usersArray: usersArray })
+    return this.httpClient.post(`${environment.backendUrl}/post-users`, { usersArray: usersArray })
   }
 
   getUsers(): any {
-    return this.httpClient.get('http://localhost:8080/get-users')
+    return this.httpClient.get(`${environment.backendUrl}/get-users`)
   }
 
 
@@ -30,7 +31,7 @@ export class LocalStorageService {
       new User("Tino", "4")
     ]
 
-    return this.httpClient.post('http://localhost:8080/post-users', { usersArray: usersArray })
+    return this.httpClient.post(`${environment.backendUrl}/post-users`, { usersArray: usersArray })
   }
 
 
