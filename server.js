@@ -39,14 +39,14 @@ app.post('/post-users', async (req, res) => {
     }
   })
 
-  // await mongoose.connect(connectionString)
-  // var doc1 = new Model({ usersArray: usersArray })
-  // await Model.deleteMany({})
-  // const users = await doc1.save()
+  await mongoose.connect(connectionString)
+  var doc1 = new Model({ usersArray: usersArray })
+  await Model.deleteMany({})
+  const users = await doc1.save()
 
-  // await mongoose.connection.close()
+  await mongoose.connection.close()
 
-  res.status(200).json("Ok")
+  res.status(200).json(users.usersArray)
 })
 
 app.get('/get-users', async (req, res) => {
