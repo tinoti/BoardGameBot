@@ -7,6 +7,8 @@ const connectionString = 'mongodb+srv://Tino:BOs6WNNlKT7VfgDW@cluster0.hkrpc.mon
 
 const app = express()
 
+require('express-async-errors')
+
 app.use(express.json())
 app.use(cors())
 app.use(express.static(__dirname + '/dist/front'));
@@ -40,6 +42,11 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname +
     '/dist/front/index.html'));
 });
+
+app.use((error, req, res) => {
+  console.log("GREŠKA")
+  console.log(error)
+})
 
 app.listen(process.env.PORT || 8080);
 
