@@ -32,7 +32,7 @@ app.post('/post-users', async (req, res) => {
       && day.availableUsers.find(o => o === "Lovre")
       && day.availableUsers.find(o => o === "Ivan"))) {
 
-      bot.sendMessage("-533658541", `Success! Svi mogu u ${day.dayName.toLowerCase()}`);
+      bot.sendMessage("-728448621", `Success! Svi mogu u ${day.dayName.toLowerCase()}`);
 
       console.log("DAN")
       console.log((day))
