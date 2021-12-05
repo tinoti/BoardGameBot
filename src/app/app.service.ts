@@ -1,24 +1,24 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http'
+import { Injectable } from '@angular/core'
+
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageService {
 
   localStorage: Storage;
-  constructor() {
+  constructor(private httpClient: HttpClient) {
     this.localStorage = window.localStorage;
   }
 
 
 
-
-
-  setUsers(usersArray: any[]): void {
-    this.localStorage.setItem("usersArray", JSON.stringify(usersArray))
+  setUsers(usersArray: any[]) {
+    return this.httpClient.post('http://localhost:8080/post-users', { usersArray: usersArray })
   }
 
   getUsers(): any {
-    return JSON.parse(this.localStorage.getItem("usersArray") as string);
+    return this.httpClient.get('http://localhost:8080/get-users')
   }
 
 
@@ -30,8 +30,7 @@ export class LocalStorageService {
       new User("Tino", "4")
     ]
 
-    this.localStorage.setItem("usersArray", JSON.stringify(usersArray))
-    return JSON.parse(this.localStorage.getItem("usersArray") as string);
+    return this.httpClient.post('http://localhost:8080/post-users', { usersArray: usersArray })
   }
 
 

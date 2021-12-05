@@ -9,25 +9,27 @@ import { LocalStorageService, User } from './app.service';
   providers: [{
     provide: MAT_RADIO_DEFAULT_OPTIONS,
     useValue: { color: 'primary' },
-}]
+  }]
 })
 export class AppComponent implements OnInit {
 
-  constructor(private service: LocalStorageService) {}
-  title = 'front';
-
+  constructor(private service: LocalStorageService) { }
+  title = 'front'
+  isDisabled = false
   value = 0
 
   usersArray: User[] = [];
 
 
   ngOnInit() {
-    const usersArray = this.service.getUsers()
-    if(usersArray == null) {
-      this.usersArray = []
-    } else {
-      this.usersArray = usersArray
-    }
+    this.service.getUsers().subscribe((data: any) => {
+
+      if (data == null) {
+        this.usersArray = []
+      } else {
+        this.usersArray = data
+      }
+    })
   }
 
 
@@ -38,20 +40,30 @@ export class AppComponent implements OnInit {
 
   setAvailability(name: any, nameDay: any) {
 
-    this.usersArray = this.service.getUsers()
     const user = this.usersArray.filter(o => o.name === name)
     const day = user[0].days.filter(o => o.name === nameDay)
     day[0].availability = this.value
 
-    this.service.setUsers(this.usersArray)
-
+    console.log(this.usersArray)
   }
 
-  setDefaultState(){
-    this.usersArray = this.service.setDefaultState()
+  setDefaultState() {
+    this.isDisabled = true
+    this.service.setDefaultState().subscribe((data: any) => {
+      this.usersArray = data
+      this.isDisabled = false
+    })
   }
 
-  setButtonColor(availability: any){
+  save() {
+    this.isDisabled = true
+    this.service.setUsers(this.usersArray).subscribe((data: any) => {
+      console.log("SPREMLJENO")
+      this.isDisabled = false
+    })
+  }
+
+  setButtonColor(availability: any) {
 
     switch (Number(availability)) {
       case 1:
