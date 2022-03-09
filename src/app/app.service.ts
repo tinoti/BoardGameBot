@@ -28,7 +28,8 @@ export class LocalStorageService {
       new User("Ivan", "1"),
       new User("Dario", "2"),
       new User("Lovre", "3"),
-      new User("Tino", "4")
+      new User("Tino", "4"),
+      new User("Iva", "5")
     ]
 
     return this.httpClient.post(`${environment.backendUrl}/post-users`, { usersArray: usersArray })
@@ -44,13 +45,13 @@ export class User {
   name: string
   id: string
   days: Day[] = [
-    new Day("Ponedjeljak", 0),
-    new Day("Utorak", 0),
-    new Day("Srijeda", 0),
-    new Day("Četvrtak", 0),
-    new Day("Petak", 0),
-    new Day("Subota", 0),
-    new Day("Nedjelja", 0)
+    new Day("Pon", 0),
+    new Day("Uto", 0),
+    new Day("Sri", 0),
+    new Day("Čet", 0),
+    new Day("Pet", 0),
+    new Day("Sub", 0),
+    new Day("Ned", 0)
   ]
 
   constructor(name: string, id: string) {

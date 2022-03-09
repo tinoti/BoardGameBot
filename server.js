@@ -20,32 +20,39 @@ app.use(cors())
 app.use(express.static(__dirname + '/dist/front'));
 
 app.post('/post-users', async (req, res) => {
+  try {
+    const { usersArray, week } = req.body
+    const availability = setAvailableUsers(usersArray)
+    
 
-  const { usersArray, week } = req.body
-  const availability = setAvailableUsers(usersArray)
+    availability.forEach(day => {
+      if (day.availableUsers.find(o => o === "Tino"
+        && day.availableUsers.find(o => o === "Dario")
+        && day.availableUsers.find(o => o === "Lovre")
+        && day.availableUsers.find(o => o === "Ivan"))) {
+  
+        bot.sendMessage("-728448621", `Success! Svi mogu u ${day.dayName.toLowerCase()}`);
+  
+        console.log("DAN")
+        console.log((day))
+      }
+    })
+  
+    await mongoose.connect(connectionString)
+    var doc1 = new Model({ usersArray: usersArray, week: week })
+    await Model.deleteMany({})
+    const users = await doc1.save()
+  
+    await mongoose.connection.close()
+  
+    res.status(200).json(users.usersArray)
+
+  } catch (error) {
+    console.log("ERROR")
+    console.log(error)
+  }
 
 
-  availability.forEach(day => {
-    if (day.availableUsers.find(o => o === "Tino"
-      && day.availableUsers.find(o => o === "Dario")
-      && day.availableUsers.find(o => o === "Lovre")
-      && day.availableUsers.find(o => o === "Ivan"))) {
-
-      bot.sendMessage("-728448621", `Success! Svi mogu u ${day.dayName.toLowerCase()}`);
-
-      console.log("DAN")
-      console.log((day))
-    }
-  })
-
-  await mongoose.connect(connectionString)
-  var doc1 = new Model({ usersArray: usersArray, week: week })
-  await Model.deleteMany({})
-  const users = await doc1.save()
-
-  await mongoose.connection.close()
-
-  res.status(200).json(users.usersArray)
 })
 
 app.get('/get-users', async (req, res) => {
@@ -131,13 +138,13 @@ bot.on('message', async (msg) => {
 
 const setAvailableUsers = (usersArray) => {
   const availability = [
-    { dayName: 'Ponedjeljak', availableUsers: [] },
-    { dayName: 'Utorak', availableUsers: [] },
-    { dayName: 'Srijeda', availableUsers: [] },
-    { dayName: 'Četvrtak', availableUsers: [] },
-    { dayName: 'Petak', availableUsers: [] },
-    { dayName: 'Subota', availableUsers: [] },
-    { dayName: 'Nedjelja', availableUsers: [] }
+    { dayName: 'Pon', availableUsers: [] },
+    { dayName: 'Uto', availableUsers: [] },
+    { dayName: 'Sri', availableUsers: [] },
+    { dayName: 'Čet', availableUsers: [] },
+    { dayName: 'Pet', availableUsers: [] },
+    { dayName: 'Sub', availableUsers: [] },
+    { dayName: 'Ned', availableUsers: [] }
   ]
 
 
