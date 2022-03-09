@@ -5,14 +5,25 @@
     <div>
       <div class="row d-flex justify-content-center">
 
-        <mat-card class="col-sm-12 col-md-12 col-12 d-flex justify-content-center">
-          <div >
+        <mat-card class="col-sm-12 col-md-12 col-12 d-flex justify-content-center row">
+          <div class="col-md-3 col-3">
+            <p>Danas je: {{date | date:'dd.MM.yyyy.'}}, Tjedan: {{currentWeek}}</p>
+            <p>Raspored za tjedan: {{week}}</p>
+            <mat-form-field>
+              <mat-label>Odaberi tjedan</mat-label>
+              <input [(ngModel)]="selectedDate" matInput placeholder="Odaberi bilo koji dan u tjednu" [matDatepicker]="picker" readonly style="cursor: pointer;" (click)="picker.open()">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div>
             <div style="display: inline-block" class="col-md-3 col-3">
               <button style="width:100px" mat-raised-button color="primary">Ivan</button>
 
               <ng-container *ngFor="let day of usersArray[0].days">
                 <br>
-                <button style="width:100px" mat-raised-button (click)="setAvailability('Ivan', day.name)"
+                <button style="width:100px" mat-raised-button
+                  (click)="setAvailability('Ivan', day.name, day.availability)"
                   [ngClass]="setButtonColor(day.availability)">{{day.name}}</button>
               </ng-container>
 
@@ -23,7 +34,8 @@
 
               <ng-container *ngFor="let day of usersArray[1].days">
                 <br>
-                <button style="width:100px" mat-raised-button (click)="setAvailability('Dario', day.name)"
+                <button style="width:100px" mat-raised-button
+                  (click)="setAvailability('Dario', day.name, day.availability)"
                   [ngClass]="setButtonColor(day.availability)">{{day.name}}</button>
               </ng-container>
 
@@ -35,7 +47,8 @@
 
               <ng-container *ngFor="let day of usersArray[2].days">
                 <br>
-                <button style="width:100px" mat-raised-button (click)="setAvailability('Lovre', day.name)"
+                <button style="width:100px" mat-raised-button
+                  (click)="setAvailability('Lovre', day.name, day.availability)"
                   [ngClass]="setButtonColor(day.availability)">{{day.name}}</button>
               </ng-container>
 
@@ -47,7 +60,8 @@
 
               <ng-container *ngFor="let day of usersArray[3].days">
                 <br>
-                <button style="width:100px" mat-raised-button (click)="setAvailability('Tino', day.name)"
+                <button style="width:100px" mat-raised-button
+                  (click)="setAvailability('Tino', day.name, day.availability)"
                   [ngClass]="setButtonColor(day.availability)">{{day.name}}</button>
               </ng-container>
 
@@ -56,14 +70,6 @@
 
 
             <br>
-            <div>
-              <mat-radio-group (change)=changeValue($event)>
-                <mat-radio-button value="1">Mogu</mat-radio-button>
-                <mat-radio-button value="2">Ne mogu</mat-radio-button>
-                <mat-radio-button value="3">Možda</mat-radio-button>
-                <mat-radio-button value="0">Poništi</mat-radio-button>
-              </mat-radio-group>
-            </div>
 
           </div>
 

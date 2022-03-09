@@ -14,8 +14,8 @@ export class LocalStorageService {
 
 
 
-  setUsers(usersArray: any[]) {
-    return this.httpClient.post(`${environment.backendUrl}/post-users`, { usersArray: usersArray })
+  setUsers(usersArray: any[], week: number) {
+    return this.httpClient.post(`${environment.backendUrl}/post-users`, { usersArray: usersArray, week: week })
   }
 
   getUsers(): any {

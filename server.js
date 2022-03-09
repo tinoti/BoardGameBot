@@ -21,8 +21,7 @@ app.use(express.static(__dirname + '/dist/front'));
 
 app.post('/post-users', async (req, res) => {
 
-  const { usersArray } = req.body
-
+  const { usersArray, week } = req.body
   const availability = setAvailableUsers(usersArray)
 
 
@@ -40,7 +39,7 @@ app.post('/post-users', async (req, res) => {
   })
 
   await mongoose.connect(connectionString)
-  var doc1 = new Model({ usersArray: usersArray })
+  var doc1 = new Model({ usersArray: usersArray, week: week })
   await Model.deleteMany({})
   const users = await doc1.save()
 
@@ -56,7 +55,7 @@ app.get('/get-users', async (req, res) => {
 
   await mongoose.connection.close()
 
-  res.status(200).json(users[0].usersArray)
+  res.status(200).json(users[0])
 })
 
 
@@ -73,7 +72,8 @@ app.use((error, req, res) => {
 app.listen(process.env.PORT || 8080);
 
 const schema = mongoose.Schema({
-  usersArray: []
+  usersArray: [],
+  week: 0
 });
 
 const Model = mongoose.model("user", schema, "usersArray");

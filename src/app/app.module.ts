@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -9,6 +9,10 @@ import { CustomMaterialModule } from '../app/shared/material.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {MatRadioModule} from '@angular/material/radio';
+import {registerLocaleData} from '@angular/common'
+import localeHr from '@angular/common/locales/hr'
+
+registerLocaleData(localeHr, "hr")
 
 @NgModule({
   declarations: [
@@ -24,7 +28,9 @@ import {MatRadioModule} from '@angular/material/radio';
     HttpClientModule,
     MatRadioModule
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: "hr"}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
